@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AndroidDavinci"
+rootProject.name = "parcial-1-am-acn4a-flor-facundo-erik"
 include(":app")
  
