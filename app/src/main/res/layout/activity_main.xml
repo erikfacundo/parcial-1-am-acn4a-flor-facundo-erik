@@ -13,7 +13,7 @@
         android:id="@+id/logo"
         android:layout_width="364dp"
         android:layout_height="85dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="168dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
@@ -23,24 +23,23 @@
     <TextView
         android:layout_width="287dp"
         android:layout_height="70dp"
-        android:gravity="center"
-        android:textColor="@color/white"
         android:fontFamily="@font/monts"
-        android:text="Esta es una ayuda para recordar que hiciste y que falta hacerle a tu vehiculo"
+        android:gravity="center"
+        android:text="Tu solución confiable para alquilar vehículos de forma rápida y segura. Con nuestra aplicación, encontrarás el auto perfecto para cada ocasión, desde un viaje de negocios hasta unas vacaciones familiares. Explora nuestra amplia selección de autos, elige el que mejor se adapte a tus necesidades y comienza tu viaje sin complicaciones. ¡Rentar un auto nunca fue tan fácil!"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
-        />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/registerVehicleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="148dp"
         android:backgroundTint="@android:color/holo_blue_light"
-        android:text="Registrar Vehículo"
+        android:text="Alquilar Vehiculo"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
