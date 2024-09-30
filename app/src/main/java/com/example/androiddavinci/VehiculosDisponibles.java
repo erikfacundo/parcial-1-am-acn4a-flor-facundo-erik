@@ -1,11 +1,64 @@
 package com.example.androiddavinci;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+
+// Clase para representar un vehículo
+class Vehicle {
+    String name;
+    String price;
+    int imageResource;
+
+    Vehicle(String name, String price, int imageResource) {
+        this.name = name;
+        this.price = price;
+        this.imageResource = imageResource;
+    }
+}
+
+// Adaptador personalizado para mostrar vehículos
+class VehicleAdapter extends ArrayAdapter<Vehicle> {
+    private final ArrayList<Vehicle> vehicles;
+    private final AppCompatActivity context;
+
+    VehicleAdapter(AppCompatActivity context, ArrayList<Vehicle> vehicles) {
+        super(context, 0, vehicles);
+        this.context = context;
+        this.vehicles = vehicles;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Infla el layout para cada item de vehículo
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_vehicle, parent, false);
+        }
+
+        // Obtiene el vehículo correspondiente a la posición
+        Vehicle vehicle = vehicles.get(position);
+
+        // Configura el nombre, precio e imagen del vehículo
+        TextView nameTextView = convertView.findViewById(R.id.vehicle_name);
+        TextView priceTextView = convertView.findViewById(R.id.vehicle_price);
+        ImageView vehicleImageView = convertView.findViewById(R.id.vehicle_image);
+
+        nameTextView.setText(vehicle.name);
+        priceTextView.setText(vehicle.price);
+        vehicleImageView.setImageResource(vehicle.imageResource);
+
+        return convertView;
+    }
+}
 
 public class VehiculosDisponibles extends AppCompatActivity {
 
@@ -14,22 +67,20 @@ public class VehiculosDisponibles extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehiculos_disponibles);
 
-        //// ListView ////
+        // ListView
         ListView listView = findViewById(R.id.vehicle_list_view);
 
-        ////Ejemplo de autos////
-        ArrayList<String> vehicles = new ArrayList<>();
-        vehicles.add("Toyota Corolla");
-        vehicles.add("Honda Civic");
-        vehicles.add("Ford Mustang");
-        vehicles.add("Chevrolet Camaro");
-        vehicles.add("BMW Serie 3");
-        vehicles.add("Audi A4");
+        // Ejemplo de autos
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+        vehicles.add(new Vehicle("Toyota Corolla", "$20,000", R.drawable.toyota_corolla));
+        vehicles.add(new Vehicle("Honda Civic", "$22,000", R.drawable.honda_civic));
+        vehicles.add(new Vehicle("Ford Mustang", "$30,000", R.drawable.ford_mustang));
+        vehicles.add(new Vehicle("Chevrolet Camaro", "$28,000", R.drawable.chevrolet_camaro));
+        vehicles.add(new Vehicle("BMW Serie 3", "$35,000", R.drawable.bmw_serie_3));
+        vehicles.add(new Vehicle("Audi A4", "$33,000", R.drawable.audi_a4));
 
-        ////como mostrar los vehiculos////
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, vehicles);
+        // Adaptador personalizado
+        VehicleAdapter adapter = new VehicleAdapter(this, vehicles);
         listView.setAdapter(adapter);
     }
 }
-
-/* * //TODO rearmar visual de vehiculos con foto, precio y select estilo boostrap */
