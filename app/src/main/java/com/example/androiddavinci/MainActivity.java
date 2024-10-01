@@ -50,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    /// TODO no funciona boton de atras chequeando///
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
 
 }
 
