@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button alquilarMotoButton = findViewById(R.id.alquilarMotoButton);
+
+        alquilarMotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(MainActivity.this, "Próximamente", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
 }
+
+
 ////fin boton lleva a lista de vehiculos////

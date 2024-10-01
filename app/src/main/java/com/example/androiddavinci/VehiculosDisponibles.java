@@ -26,7 +26,7 @@ class Vehicle {
     }
 }
 
-// Adaptador personalizado para mostrar vehículos
+///// mostrar vehículos ////
 class VehicleAdapter extends ArrayAdapter<Vehicle> {
     private final ArrayList<Vehicle> vehicles;
     private final AppCompatActivity context;
@@ -37,17 +37,15 @@ class VehicleAdapter extends ArrayAdapter<Vehicle> {
         this.vehicles = vehicles;
     }
 
-    @Override
+    @Override//lista de vehiculos//
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Infla el layout para cada item de vehículo
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_vehicle, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.lista_vehiculos, parent, false);
         }
 
-        // Obtiene el vehículo correspondiente a la posición
         Vehicle vehicle = vehicles.get(position);
 
-        // Configura el nombre, precio e imagen del vehículo
+        // nombre precio y foto//
         TextView nameTextView = convertView.findViewById(R.id.vehicle_name);
         TextView priceTextView = convertView.findViewById(R.id.vehicle_price);
         ImageView vehicleImageView = convertView.findViewById(R.id.vehicle_image);
@@ -70,7 +68,7 @@ public class VehiculosDisponibles extends AppCompatActivity {
         // ListView
         ListView listView = findViewById(R.id.vehicle_list_view);
 
-        // Ejemplo de autos
+        // arraylist de vehiculos//
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         vehicles.add(new Vehicle("Toyota Corolla", "$20,000", R.drawable.toyota_corolla));
         vehicles.add(new Vehicle("Honda Civic", "$22,000", R.drawable.honda_civic));
@@ -79,7 +77,6 @@ public class VehiculosDisponibles extends AppCompatActivity {
         vehicles.add(new Vehicle("BMW Serie 3", "$35,000", R.drawable.bmw_serie_3));
         vehicles.add(new Vehicle("Audi A4", "$33,000", R.drawable.audi_a4));
 
-        // Adaptador personalizado
         VehicleAdapter adapter = new VehicleAdapter(this, vehicles);
         listView.setAdapter(adapter);
     }
