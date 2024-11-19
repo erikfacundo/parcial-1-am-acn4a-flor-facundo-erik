@@ -1,5 +1,6 @@
 package com.example.androiddavinci;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -13,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-// Clase para representar un vehículo
+// Clase de vehículo //
 class Vehicle {
     String name;
     String price;
@@ -37,7 +38,7 @@ class VehicleAdapter extends ArrayAdapter<Vehicle> {
         this.vehicles = vehicles;
     }
 
-    @Override//lista de vehiculos//
+    @Override //lista de vehiculos//
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_item_vehicle, parent, false);
@@ -65,7 +66,6 @@ public class VehiculosDisponibles extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehiculos_disponibles);
 
-        // ListView
         ListView listView = findViewById(R.id.vista_vehiculos);
 
         // arraylist de vehiculos//
@@ -81,15 +81,27 @@ public class VehiculosDisponibles extends AppCompatActivity {
         vehicles.add(new Vehicle("Ford Mustang", "$30,000", R.drawable.ford_mustang));
         vehicles.add(new Vehicle("Chevrolet Camaro", "$28,000", R.drawable.chevrolet_camaro));
         vehicles.add(new Vehicle("BMW Serie 3", "$35,000", R.drawable.bmw_serie_3));
-        vehicles.add(new Vehicle("Audi A4", "$33,000", R.drawable.audi_a4));vehicles.add(new Vehicle("Toyota Corolla", "$20,000", R.drawable.toyota_corolla));
+        vehicles.add(new Vehicle("Audi A4", "$33,000", R.drawable.audi_a4));
+        vehicles.add(new Vehicle("Toyota Corolla", "$20,000", R.drawable.toyota_corolla));
         vehicles.add(new Vehicle("Honda Civic", "$22,000", R.drawable.honda_civic));
         vehicles.add(new Vehicle("Ford Mustang", "$30,000", R.drawable.ford_mustang));
         vehicles.add(new Vehicle("Chevrolet Camaro", "$28,000", R.drawable.chevrolet_camaro));
         vehicles.add(new Vehicle("BMW Serie 3", "$35,000", R.drawable.bmw_serie_3));
         vehicles.add(new Vehicle("Audi A4", "$33,000", R.drawable.audi_a4));
 
-        // Adaptador personalizado
+        // nombre, imagen, precio del auto
         VehicleAdapter adapter = new VehicleAdapter(this, vehicles);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            Vehicle vehiculoSeleccionado = vehicles.get(position);
+
+            Intent intent = new Intent(VehiculosDisponibles.this, DetallesVehiculoActivity.class);
+            intent.putExtra("nombre", vehiculoSeleccionado.name);
+            intent.putExtra("precio", vehiculoSeleccionado.price);
+            intent.putExtra("imagen", vehiculoSeleccionado.imageResource);
+            startActivity(intent);
+        });
+
+
     }
 }

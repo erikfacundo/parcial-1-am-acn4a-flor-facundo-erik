@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CarRental</string>
+    <string name="TXT_FECHA_INICIO" />
+    <string name="TXT_SELECCIONAR_FECHA" />
+    <string name="TXT_FECHA_FIN" />
+    <string name="TXT_DIAS" />
+    <string name="TXT_PRECIO_TOTAL" />
 </resources>
