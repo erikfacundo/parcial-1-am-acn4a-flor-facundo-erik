@@ -66,6 +66,12 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, monthOfYear, dayOfMonth) -> {
             String date = year1 + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
 
+            // Validar si la fecha seleccionada es anterior a la fecha actual
+            if (isDateBeforeToday(date)) {
+                Toast.makeText(DetallesVehiculoActivity.this, "La fecha seleccionada no puede ser anterior a la fecha actual.", Toast.LENGTH_SHORT).show();
+                return; // Salir si la fecha es inválida
+            }
+
             if (isStartDate) {
                 fechaInicio = date;
                 txtFechaInicio.setText(fechaInicio);
@@ -74,20 +80,19 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
                 txtFechaFin.setText(fechaFin);
             }
 
-            // actualiza el precio segun los dias //
+            // Actualizar el precio si ambas fechas están seleccionadas
             if (!fechaInicio.isEmpty() && !fechaFin.isEmpty()) {
                 int diasSeleccionados = calculateDaysDifference(fechaInicio, fechaFin);
 
-                // cantidad de dias seleccionados ///
                 txtDias.setText(TXT_DIAS + diasSeleccionados);
 
                 if (diasSeleccionados > 0) {
-                    // precio segun cantidad de dias//
+                    // Calcular el precio total basado en los días seleccionados
                     double precioTotal = precioBase * diasSeleccionados;
                     String precioFinal = "$" + String.format("%.2f", precioTotal);
                     txtPrecio.setText(precioFinal);
                 } else {
-                    // fechas no validas//
+                    // Si la fecha de fin es antes de la fecha de inicio
                     Toast.makeText(DetallesVehiculoActivity.this, "La fecha de fin debe ser después de la fecha de inicio", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -96,24 +101,42 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    // Método para calcular la diferencia en días entre dos fechas
+    // Método para comprobar si la fecha seleccionada es anterior a la fecha actual ///
+    private boolean isDateBeforeToday(String selectedDate) {
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        int currentMonth = calendar.get(Calendar.MONTH);
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String[] parts = selectedDate.split("-");
+        int selectedYear = Integer.parseInt(parts[0]);
+        int selectedMonth = Integer.parseInt(parts[1]) - 1;
+        int selectedDay = Integer.parseInt(parts[2]);
+
+        Calendar selectedCalendar = Calendar.getInstance();
+        selectedCalendar.set(selectedYear, selectedMonth, selectedDay);
+
+        // Comparar las fechas
+        return selectedCalendar.before(calendar);
+    }
+
     private int calculateDaysDifference(String startDate, String endDate) {
         try {
-            // Convertir las fechas a valores de años, meses y días
+
             String[] startParts = startDate.split("-");
             String[] endParts = endDate.split("-");
 
-            // Usar Calendar para manejar las fechas
+
             Calendar startCalendar = Calendar.getInstance();
             startCalendar.set(Integer.parseInt(startParts[0]), Integer.parseInt(startParts[1]) - 1, Integer.parseInt(startParts[2]));
 
             Calendar endCalendar = Calendar.getInstance();
             endCalendar.set(Integer.parseInt(endParts[0]), Integer.parseInt(endParts[1]) - 1, Integer.parseInt(endParts[2]));
 
-            // Obtener la diferencia en milisegundos
+
             long diffInMillis = endCalendar.getTimeInMillis() - startCalendar.getTimeInMillis();
 
-            // Verificar si la fecha de fin es mayor que la de inicio
+
             if (diffInMillis < 0) {
                 return 0; // Si la fecha de fin es anterior a la de inicio, no se calcula la diferencia
             }
