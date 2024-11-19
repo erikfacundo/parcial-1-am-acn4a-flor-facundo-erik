@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,14 +18,13 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
 
     // Variables de vista
     private TextView txtFechaInicio, txtFechaFin, txtPrecio, txtDias;
-    private Button btnSeleccionarFechaInicio, btnSeleccionarFechaFin;
     private String fechaInicio = "", fechaFin = "";
     private double precioBase;
     private static final String TXT_DIAS = "Días: ";
 
     @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles_vehiculo);
 
@@ -40,13 +39,14 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         txtFechaInicio = findViewById(R.id.txt_fecha_inicio);
         txtFechaFin = findViewById(R.id.txt_fecha_fin);
         txtDias = findViewById(R.id.txt_dias);
-        btnSeleccionarFechaInicio = findViewById(R.id.btn_fecha_inicio);
-        btnSeleccionarFechaFin = findViewById(R.id.btn_fecha_fin);
+        Button btnSeleccionarFechaInicio = findViewById(R.id.btn_fecha_inicio);
+        Button btnSeleccionarFechaFin = findViewById(R.id.btn_fecha_fin);
 
         imagen.setImageResource(imagenVehiculo);
         txtPrecio.setText(precioVehiculo);
 
         // replace de precio//
+        assert precioVehiculo != null;
         precioBase = Double.parseDouble(precioVehiculo.replace("$", "").replace(",", ""));
 
         // listener de fecha inicio //
@@ -63,7 +63,7 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, monthOfYear, dayOfMonth) -> {
+        @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, monthOfYear, dayOfMonth) -> {
             String date = year1 + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
 
             // Validar si la fecha seleccionada es anterior a la fecha actual
@@ -89,7 +89,7 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
                 if (diasSeleccionados > 0) {
                     // Calcular el precio total basado en los días seleccionados
                     double precioTotal = precioBase * diasSeleccionados;
-                    String precioFinal = "$" + String.format("%.2f", precioTotal);
+                    @SuppressLint("DefaultLocale") String precioFinal = "$" + String.format("%.2f", precioTotal);
                     txtPrecio.setText(precioFinal);
                 } else {
                     // Si la fecha de fin es antes de la fecha de inicio
@@ -104,9 +104,7 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
     // Método para comprobar si la fecha seleccionada es anterior a la fecha actual ///
     private boolean isDateBeforeToday(String selectedDate) {
         Calendar calendar = Calendar.getInstance();
-        int currentYear = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH);
-        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        
 
         String[] parts = selectedDate.split("-");
         int selectedYear = Integer.parseInt(parts[0]);
@@ -138,11 +136,11 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
 
 
             if (diffInMillis < 0) {
-                return 0; // Si la fecha de fin es anterior a la de inicio, no se calcula la diferencia
+                return 0;
             }
 
             // Convertir a días
-            return (int) (diffInMillis / (1000 * 60 * 60 * 24));  // 1000 ms = 1 seg, 60 seg = 1 min, 60 min = 1 hr, 24 hrs = 1 día
+            return (int) (diffInMillis / (1000 * 60 * 60 * 24));
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

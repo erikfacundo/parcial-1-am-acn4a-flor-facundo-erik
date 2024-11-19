@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -38,8 +39,9 @@ class VehicleAdapter extends ArrayAdapter<Vehicle> {
         this.vehicles = vehicles;
     }
 
+    @NonNull
     @Override //lista de vehiculos//
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_item_vehicle, parent, false);
         }

@@ -5,4 +5,8 @@
     <string name="TXT_FECHA_FIN" />
     <string name="TXT_DIAS" />
     <string name="TXT_PRECIO_TOTAL" />
+    <string name="seleccionar_fecha_de_inicio">Seleccionar fecha de inicio</string>
+    <string name="seleccionar_fecha_de_fin">Seleccionar fecha de fin</string>
+    <string name="atr_s">Atrás</string>
+    <string name="todo">TODO</string>
 </resources>

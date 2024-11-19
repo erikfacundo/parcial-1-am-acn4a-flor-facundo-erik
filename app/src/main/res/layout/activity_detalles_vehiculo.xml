@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -16,8 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:gravity="center_horizontal"
-            android:layout_centerVertical="true">
+            android:gravity="center_horizontal">
 
             <!-- Imagen del vehículo -->
             <ImageView
@@ -26,7 +23,7 @@
                 android:layout_height="226dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="180dp"
-                android:scaleType="centerCrop" />
+                android:contentDescription="@string/todo" android:scaleType="centerCrop" />
 
             <!-- Nombre del vehículo -->
             <TextView
@@ -64,7 +61,7 @@
                 android:id="@+id/btn_fecha_inicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seleccionar fecha de inicio"
+                android:text="@string/seleccionar_fecha_de_inicio"
                 android:layout_marginTop="8dp"
                 android:gravity="center"/>
 
@@ -84,7 +81,7 @@
                 android:id="@+id/btn_fecha_fin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seleccionar fecha de fin"
+                android:text="@string/seleccionar_fecha_de_fin"
                 android:layout_marginTop="8dp"
                 android:gravity="center"/>
 
@@ -109,6 +106,12 @@
                 android:textSize="18sp"
                 android:layout_marginTop="16dp"
                 android:gravity="center"/>
+            <Button
+                android:id="@+id/btn_atras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/atr_s"
+                android:layout_marginTop="20dp" />
 
         </LinearLayout>
     </ScrollView>
