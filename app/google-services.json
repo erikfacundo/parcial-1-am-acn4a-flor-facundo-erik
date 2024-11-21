@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "354751567923",
+    "project_id": "carental-da5ad",
+    "storage_bucket": "carental-da5ad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354751567923:android:29710c67f5df415ab6eb46",
+        "android_client_info": {
+          "package_name": "com.example.androiddavinci"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9rcJwfSVpMZqQkNTWYnzl7PIPWcfhFCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
