@@ -6,57 +6,91 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;  // Instancia de FirebaseAuth
+    private Button registerVehicleButton;
+    private Button alquilarMotoButton;
+    private Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-////barradesistema////
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Inicializar FirebaseAuth
+        mAuth = FirebaseAuth.getInstance();
 
-////boton////
-        Button registerVehicleButton = findViewById(R.id.registerVehicleButton);
+        // Verificar si el usuario está autenticado
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            // Si no está autenticado, redirigir a la pantalla de login
+            Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(loginIntent);
+            finish(); // Finaliza esta actividad para evitar volver sin haber iniciado sesión
+        }
 
+        // Botón para registrar vehículo
+        registerVehicleButton = findViewById(R.id.registerVehicleButton);
         registerVehicleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Iniciar la actividad VehicleListActivity
+                // Iniciar la actividad VehiculosDisponibles
                 Intent intent = new Intent(MainActivity.this, VehiculosDisponibles.class);
                 startActivity(intent);
             }
         });
 
-        Button alquilarMotoButton = findViewById(R.id.alquilarMotoButton);
-
+        // Botón para alquilar moto
+        alquilarMotoButton = findViewById(R.id.alquilarMotoButton);
         alquilarMotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Toast.makeText(MainActivity.this, "Próximamente", Toast.LENGTH_SHORT).show();
             }
         });
 
+        // Botón para cerrar sesión
+        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Cerrar sesión
+                mAuth.signOut();
+                Toast.makeText(MainActivity.this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
+                // Redirigir al login
+                Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
+                finish();
+            }
+        });
     }
-    /// TODO no funciona boton de atras chequeando///
+
+    // Manejo del botón de atrás (opcional)
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        return false;
+        return super.onSupportNavigateUp();
+    }
+
+    public void logout(View view) {
+        // Cerrar sesión en Firebase
+        FirebaseAuth.getInstance().signOut();
+
+        // Mostrar un mensaje de confirmación
+        Toast.makeText(MainActivity.this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
+
+        // Redirigir al LoginActivity
+        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(loginIntent);
+
+        // Finalizar esta actividad para evitar regresar a la pantalla principal
+        finish();
     }
 
 }
-
-
-////fin boton lleva a lista de vehiculos////

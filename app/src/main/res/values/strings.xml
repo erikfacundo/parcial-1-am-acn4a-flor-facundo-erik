@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">CarRental</string>
     <string name="TXT_FECHA_INICIO" />
     <string name="TXT_SELECCIONAR_FECHA" />
@@ -9,4 +9,9 @@
     <string name="seleccionar_fecha_de_fin">Seleccionar fecha de fin</string>
     <string name="atr_s">Atrás</string>
     <string name="todo">TODO</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="register_button">Registrarse</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
 </resources>
