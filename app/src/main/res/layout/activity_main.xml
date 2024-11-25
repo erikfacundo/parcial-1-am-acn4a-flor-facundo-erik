@@ -52,9 +52,9 @@
         android:id="@+id/alquilarMotoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="140dp"
         android:backgroundTint="@android:color/holo_orange_light"
         android:text="Alquilar Moto"
-        android:layout_marginBottom="140dp"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,12 +63,16 @@
         app:layout_constraintTop_toBottomOf="@id/alquilarMotoButton"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="UnknownId" />
+
     <Button
-        android:id="@+id/logoutButton"
+        android:id="@+id/usuarioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cerrar_sesi_n"
-        android:onClick="logout" />
+        android:backgroundTint="@android:color/holo_green_light"
+        android:text="Usuario"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

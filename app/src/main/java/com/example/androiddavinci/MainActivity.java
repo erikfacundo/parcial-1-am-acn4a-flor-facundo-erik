@@ -16,36 +16,30 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button registerVehicleButton;
     private Button alquilarMotoButton;
-    private Button logoutButton;
+    private Button usuarioButton; // Botón de "Usuario"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mAuth = FirebaseAuth.getInstance();
-
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-
             Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(loginIntent);
             finish();
         }
 
-
         registerVehicleButton = findViewById(R.id.registerVehicleButton);
         registerVehicleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(MainActivity.this, VehiculosDisponibles.class);
                 startActivity(intent);
             }
         });
-
 
         alquilarMotoButton = findViewById(R.id.alquilarMotoButton);
         alquilarMotoButton.setOnClickListener(new View.OnClickListener() {
@@ -55,18 +49,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        usuarioButton = findViewById(R.id.usuarioButton); // Este es el nuevo botón "Usuario"
+        usuarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                mAuth.signOut();
-                Toast.makeText(MainActivity.this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
-
-                Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(loginIntent);
-                finish();
+                Intent intent = new Intent(MainActivity.this, UsuarioActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -76,12 +64,4 @@ public class MainActivity extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
-    public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();
-        Toast.makeText(MainActivity.this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
-        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(loginIntent);
-        finish();
-    }
-
 }

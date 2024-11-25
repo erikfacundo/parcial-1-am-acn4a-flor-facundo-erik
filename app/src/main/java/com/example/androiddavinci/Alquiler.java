@@ -6,11 +6,9 @@ public class Alquiler {
     private String precioFinal;
     private int diasSeleccionados;
 
-    // Constructor vacío requerido para Firebase
     public Alquiler() {
     }
 
-    // Constructor con parámetros
     public Alquiler(String fechaInicio, String fechaFin, String precioFinal, int diasSeleccionados) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -18,7 +16,6 @@ public class Alquiler {
         this.diasSeleccionados = diasSeleccionados;
     }
 
-    // Getters y setters
     public String getFechaInicio() {
         return fechaInicio;
     }

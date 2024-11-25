@@ -60,31 +60,24 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         imagen.setImageResource(imagenVehiculo);
         txtPrecio.setText(precioVehiculo);
 
-        // Reemplazar el precio por la versión numérica sin signos de pesos y comas
         assert precioVehiculo != null;
         precioBase = Double.parseDouble(precioVehiculo.replace("$", "").replace(",", ""));
 
-        // Listener de fecha inicio
         btnSeleccionarFechaInicio.setOnClickListener(view -> showDatePickerDialog(true));
 
-        // Listener de fecha fin
         btnSeleccionarFechaFin.setOnClickListener(view -> showDatePickerDialog(false));
 
-        // Configurar el listener del botón "Continuar" (btnAtras)
         btnAtras.setOnClickListener(view -> {
-            // Verificar si las fechas han sido seleccionadas
             if (fechaInicio.isEmpty() || fechaFin.isEmpty()) {
                 showAlert("Error", "Por favor, seleccione ambas fechas", "OK", false);
                 return; // No continuar si alguna fecha está vacía
             }
 
-            // Verificar que la fecha de fin sea posterior a la fecha de inicio
             if (fechaInicio.compareTo(fechaFin) >= 0) {
                 showAlert("Error", "La fecha de fin debe ser posterior a la de inicio", "OK", false);
                 return;
             }
 
-            // Mostrar Spinner (ProgressBar)
             progressBar.setVisibility(View.VISIBLE);
 
             // Calcular el precio total basado en los días seleccionados
@@ -95,22 +88,17 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
                 @SuppressLint("DefaultLocale") String precioFinal = "$" + String.format("%.2f", precioTotal);
                 txtPrecio.setText(precioFinal);
 
-                // Guardar en Firebase
                 saveAlquilerToFirebase(fechaInicio, fechaFin, precioFinal, diasSeleccionados);
 
-                // Mostrar un Alert de Confirmación
                 showAlert("Confirmación", "El alquiler ha sido confirmado con éxito. Precio total: " + precioFinal, "OK", true);
             } else {
-                // Si la fecha de fin es antes de la fecha de inicio
                 showAlert("Error", "La fecha de fin debe ser después de la fecha de inicio", "OK", false);
             }
 
-            // Ocultar Spinner después de la acción
             progressBar.setVisibility(View.GONE);
         });
     }
 
-    // Método para mostrar el DatePicker
     private void showDatePickerDialog(boolean isStartDate) {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -120,13 +108,11 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, monthOfYear, dayOfMonth) -> {
             String date = year1 + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
 
-            // Validar si la fecha seleccionada es anterior a la fecha actual
             if (isDateBeforeToday(date)) {
                 Toast.makeText(DetallesVehiculoActivity.this, "La fecha seleccionada no puede ser anterior a la fecha actual.", Toast.LENGTH_SHORT).show();
-                return; // Salir si la fecha es inválida
+                return;
             }
 
-            // Actualizar la fecha según si es fecha de inicio o fin
             if (isStartDate) {
                 fechaInicio = date;
                 txtFechaInicio.setText(fechaInicio);
@@ -135,19 +121,16 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
                 txtFechaFin.setText(fechaFin);
             }
 
-            // Actualizar el precio si ambas fechas están seleccionadas
             if (!fechaInicio.isEmpty() && !fechaFin.isEmpty()) {
                 int diasSeleccionados = calculateDaysDifference(fechaInicio, fechaFin);
 
                 txtDias.setText(TXT_DIAS + diasSeleccionados);
 
                 if (diasSeleccionados > 0) {
-                    // Calcular el precio total basado en los días seleccionados
                     double precioTotal = precioBase * diasSeleccionados;
                     @SuppressLint("DefaultLocale") String precioFinal = "$" + String.format("%.2f", precioTotal);
                     txtPrecio.setText(precioFinal);
                 } else {
-                    // Si la fecha de fin es antes de la fecha de inicio
                     Toast.makeText(DetallesVehiculoActivity.this, "La fecha de fin debe ser después de la fecha de inicio", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -156,7 +139,6 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    // Método para comprobar si la fecha seleccionada es anterior a la fecha actual
     private boolean isDateBeforeToday(String selectedDate) {
         Calendar calendar = Calendar.getInstance();
         String[] parts = selectedDate.split("-");
@@ -167,11 +149,9 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         Calendar selectedCalendar = Calendar.getInstance();
         selectedCalendar.set(selectedYear, selectedMonth, selectedDay);
 
-        // Comparar las fechas
         return selectedCalendar.before(calendar);
     }
 
-    // Método para calcular la diferencia en días entre dos fechas
     private int calculateDaysDifference(String startDate, String endDate) {
         try {
             String[] startParts = startDate.split("-");
@@ -189,7 +169,6 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
                 return 0;
             }
 
-            // Convertir la diferencia de milisegundos a días
             return (int) (diffInMillis / (1000 * 60 * 60 * 24));
         } catch (Exception e) {
             e.printStackTrace();
@@ -197,7 +176,6 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         }
     }
 
-    // Guardar los datos del alquiler en Firebase
     private void saveAlquilerToFirebase(String fechaInicio, String fechaFin, String precioFinal, int diasSeleccionados) {
         String alquilerId = mDatabase.push().getKey(); // Generar un ID único para el alquiler
 
@@ -208,14 +186,12 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         }
     }
 
-    // Mostrar el AlertDialog
     private void showAlert(String title, String message, String positiveButtonText, boolean isSuccess) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(positiveButtonText, (dialog, which) -> {
                     if (isSuccess) {
-                        // Redirigir a la pantalla de confirmación (por ejemplo)
                         Intent intent = new Intent(DetallesVehiculoActivity.this, MainActivity.class);
                         startActivity(intent);
                     }

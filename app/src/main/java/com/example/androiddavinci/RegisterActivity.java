@@ -25,17 +25,14 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Inicializar FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
 
-        // Inicializar vistas
         emailField = findViewById(R.id.emailField);
         passwordField = findViewById(R.id.passwordField);
         progressBar = findViewById(R.id.progressBar);
         Button registerButton = findViewById(R.id.registerButton);
         Button backButton = findViewById(R.id.backButton);
 
-        // Botón para registrarse
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        // Botón para volver a la pantalla de inicio de sesión
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
