@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/primer_color"
     tools:context=".MainActivity">
 
-
+    <!-- Logo -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="364dp"
@@ -16,63 +16,98 @@
         android:layout_marginTop="168dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Descripción del servicio -->
     <TextView
+        android:id="@+id/descriptionText"
         android:layout_width="287dp"
         android:layout_height="70dp"
+        android:layout_marginTop="92dp"
         android:fontFamily="@font/monts"
         android:gravity="center"
         android:text="Tu solución confiable para alquilar vehículos de forma rápida y segura. Con nuestra aplicación, encontrarás el auto perfecto para cada ocasión, desde un viaje de negocios hasta unas vacaciones familiares. Explora nuestra amplia selección de autos, elige el que mejor se adapte a tus necesidades y comienza tu viaje sin complicaciones. ¡Rentar un auto nunca fue tan fácil!"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/quinto_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
+    <!-- FrameLayout para superponer los botones de "Iniciar sesión" y "Registrarse" -->
+    <FrameLayout
+        android:id="@+id/loginFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/descriptionText">
+
+        <!-- Botón de "Iniciar sesión" -->
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/tercer_color"
+            android:text="Iniciar sesión"
+            android:textColor="@color/primer_color"
+            android:textSize="18sp" />
+
+        <!-- Botón de "Registrarse" -->
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/segundo_color"
+            android:text="Registrarse"
+            android:textColor="@color/primer_color"
+            android:textSize="18sp" />
+    </FrameLayout>
+
+    <!-- Botones de alquiler, inicialmente ocultos -->
     <Button
         android:id="@+id/registerVehicleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="192dp"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:text="Alquilar Vehiculo"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="148dp"
+        android:backgroundTint="@color/tercer_color"
+        android:text="Alquilar Vehículo"
+        android:textColor="@color/primer_color"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcomeText"
-        tools:ignore="UnknownId" />
+        app:layout_constraintTop_toBottomOf="@id/descriptionText" />
 
     <Button
         android:id="@+id/alquilarMotoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
-        android:backgroundTint="@android:color/holo_orange_light"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/segundo_color"
         android:text="Alquilar Moto"
-        android:textColor="@android:color/white"
+        android:textColor="@color/primer_color"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/alquilarMotoButton"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="UnknownId" />
+        app:layout_constraintTop_toBottomOf="@id/registerVehicleButton" />
 
     <Button
         android:id="@+id/usuarioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_green_light"
+        android:backgroundTint="@color/cuarto_color"
         android:text="Usuario"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="16dp" />
-
+        android:textColor="@color/primer_color"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alquilarMotoButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

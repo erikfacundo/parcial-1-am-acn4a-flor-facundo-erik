@@ -1,8 +1,9 @@
-<resources>
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="teal_200">#03DAC5</color>
-    <color name="purple_500">#6200EE</color>
-    <color name="purple_700">#3700B3</color>
-    <color name="holo_blue_light">#33B5E5</color>
-</resources>
+
+    <resources>
+        <color name="primer_color">#4e4d49</color>
+        <color name="segundo_color">#725e45</color>
+        <color name="tercer_color">#b7946a</color>
+        <color name="cuarto_color">#e2c58d</color>
+        <color name="quinto_color">#d6cfbf</color>
+    </resources>
+

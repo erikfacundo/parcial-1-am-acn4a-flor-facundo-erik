@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dimensiones generales -->
+    <dimen name="logo_width">364dp</dimen>
+    <dimen name="logo_height">85dp</dimen>
+    <dimen name="logo_margin_top">168dp</dimen>
+
+    <dimen name="textview_width">287dp</dimen>
+    <dimen name="textview_height">70dp</dimen>
+
+    <dimen name="button_text_size">18sp</dimen>
+
+    <!-- Margen inferior de los botones -->
+    <dimen name="button_margin_bottom_register_vehicle">192dp</dimen>
+    <dimen name="button_margin_bottom_alquilar_moto">140dp</dimen>
+
+    <!-- Posición del botón Usuario (temporal, mejorar con constraints) -->
+    <dimen name="usuario_button_x">23dp</dimen>
+    <dimen name="usuario_button_y">16dp</dimen>
+
+</resources>

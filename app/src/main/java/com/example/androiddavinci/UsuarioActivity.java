@@ -2,7 +2,9 @@ package com.example.androiddavinci;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ public class UsuarioActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private ListView alquileresListView;
+    private Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class UsuarioActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         alquileresListView = findViewById(R.id.alquileresListView);
+        logoutButton = findViewById(R.id.logoutButton);
+
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
@@ -40,17 +45,18 @@ public class UsuarioActivity extends AppCompatActivity {
         } else {
 
             Toast.makeText(UsuarioActivity.this, "Usuario no autenticado", Toast.LENGTH_SHORT).show();
-
             Intent loginIntent = new Intent(UsuarioActivity.this, LoginActivity.class);
             startActivity(loginIntent);
             finish();
         }
+
+
+        logoutButton.setOnClickListener(view -> cerrarSesion());
     }
 
+
     private void mostrarAlquileres(String userId) {
-
         CollectionReference alquileresRef = db.collection("alquileres");
-
 
         alquileresRef.whereEqualTo("userId", userId)
                 .get()
@@ -61,16 +67,21 @@ public class UsuarioActivity extends AppCompatActivity {
                             // Lista para almacenar los alquileres
                             List<String> alquileres = new ArrayList<>();
 
-
+                            // Iterar sobre los documentos de alquileres
                             for (DocumentSnapshot document : querySnapshot) {
+                                String fechaInicio = document.getString("fechaInicio");
+                                String fechaFin = document.getString("fechaFin");
+                                String precioFinal = document.getString("precioFinal");
 
-                                String descripcion = document.getString("descripcion");
-                                if (descripcion != null) {
-                                    alquileres.add(descripcion);
+                                // Verificar que los campos necesarios existen en el documento
+                                if (fechaInicio != null && fechaFin != null && precioFinal != null) {
+                                    String alquiler = "Alquiler desde: " + fechaInicio + " hasta: " + fechaFin + "\nPrecio: " + precioFinal;
+                                    alquileres.add(alquiler);
                                 } else {
-                                    alquileres.add("Descripción no disponible");
+                                    alquileres.add("Datos incompletos para este alquiler");
                                 }
                             }
+
 
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(UsuarioActivity.this, android.R.layout.simple_list_item_1, alquileres);
                             alquileresListView.setAdapter(adapter);
@@ -78,8 +89,18 @@ public class UsuarioActivity extends AppCompatActivity {
                             Toast.makeText(UsuarioActivity.this, "No tienes alquileres registrados", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(UsuarioActivity.this, "Error al obtener los alquileres", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UsuarioActivity.this, "Error al obtener los alquileres: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+
+    private void cerrarSesion() {
+        mAuth.signOut(); // Cierra sesión de Firebase
+
+
+        Intent loginIntent = new Intent(UsuarioActivity.this, LoginActivity.class);
+        startActivity(loginIntent);
+        finish(); // Cierra la actividad actual
     }
 }

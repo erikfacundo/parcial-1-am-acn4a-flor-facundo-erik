@@ -4,38 +4,51 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/primer_color">
 
     <EditText
         android:id="@+id/emailField"
         android:hint="Correo electrónico"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/quinto_color"
+        android:backgroundTint="@color/cuarto_color"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/passwordField"
         android:hint="Contraseña"
         android:inputType="textPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/quinto_color"
+        android:backgroundTint="@color/cuarto_color"
+        android:layout_marginBottom="16dp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:visibility="gone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/registerButton"
         android:text="Registrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primer_color"
+        android:backgroundTint="@color/tercer_color"
+        android:layout_marginBottom="8dp"/>
 
     <Button
         android:id="@+id/backButton"
         android:text="Volver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primer_color"
+        android:backgroundTint="@color/segundo_color"
+        android:layout_marginBottom="8dp"/>
 </LinearLayout>

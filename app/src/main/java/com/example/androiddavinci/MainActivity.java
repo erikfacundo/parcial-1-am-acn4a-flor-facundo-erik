@@ -16,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button registerVehicleButton;
     private Button alquilarMotoButton;
-    private Button usuarioButton; // Botón de "Usuario"
+    private Button usuarioButton;
+    private Button loginButton; // Botón de Iniciar sesión
+    private Button registerButton; // Botón de Registrarse
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +27,53 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        // Inicialización de los botones
+        registerVehicleButton = findViewById(R.id.registerVehicleButton);
+        alquilarMotoButton = findViewById(R.id.alquilarMotoButton);
+        usuarioButton = findViewById(R.id.usuarioButton);
+        loginButton = findViewById(R.id.loginButton);
+        registerButton = findViewById(R.id.registerButton);
+
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(loginIntent);
-            finish();
+
+            loginButton.setVisibility(View.VISIBLE);
+            registerButton.setVisibility(View.VISIBLE);
+
+            // Y ocultamos los botones relacionados con el alquiler
+            registerVehicleButton.setVisibility(View.GONE);
+            alquilarMotoButton.setVisibility(View.GONE);
+            usuarioButton.setVisibility(View.GONE);
+        } else {
+
+            loginButton.setVisibility(View.GONE);
+            registerButton.setVisibility(View.GONE);
+
+            registerVehicleButton.setVisibility(View.VISIBLE);
+            alquilarMotoButton.setVisibility(View.VISIBLE);
+            usuarioButton.setVisibility(View.VISIBLE);
         }
 
-        registerVehicleButton = findViewById(R.id.registerVehicleButton);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         registerVehicleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        alquilarMotoButton = findViewById(R.id.alquilarMotoButton);
+
         alquilarMotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        usuarioButton = findViewById(R.id.usuarioButton); // Este es el nuevo botón "Usuario"
+
         usuarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

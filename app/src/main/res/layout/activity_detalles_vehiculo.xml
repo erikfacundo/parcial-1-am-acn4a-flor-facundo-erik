@@ -2,13 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/primer_color">
 
-    <!-- ScrollView para hacer que los elementos sean desplazables -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -16,108 +15,111 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
-            <!-- Imagen del vehículo -->
+
             <ImageView
                 android:id="@+id/imagen_vehiculo"
                 android:layout_width="368dp"
                 android:layout_height="226dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="32dp"
                 android:contentDescription="@string/todo"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="32dp" />
+                android:scaleType="centerCrop" />
 
-            <!-- Nombre del vehículo -->
             <TextView
                 android:id="@+id/nombre_vehiculo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/quinto_color"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"
                 android:gravity="center" />
 
-            <!-- Precio del vehículo -->
+
             <TextView
                 android:id="@+id/precio_vehiculo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/tercer_color"
                 android:textSize="16sp"
                 android:gravity="center" />
 
-            <!-- Fecha de inicio -->
+
             <TextView
                 android:id="@+id/txt_fecha_inicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/TXT_FECHA_INICIO"
-                android:textColor="@color/white"
+                android:textColor="@color/quinto_color"
                 android:textSize="18sp"
                 android:layout_marginTop="16dp"
                 android:gravity="center" />
 
-            <!-- Botón para seleccionar fecha de inicio -->
+
             <Button
                 android:id="@+id/btn_fecha_inicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/seleccionar_fecha_de_inicio"
                 android:layout_marginTop="8dp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textColor="@color/quinto_color"
+                android:backgroundTint="@color/segundo_color" />
 
-            <!-- Fecha de fin -->
+
             <TextView
                 android:id="@+id/txt_fecha_fin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/TXT_FECHA_FIN"
-                android:textColor="@color/white"
+                android:textColor="@color/quinto_color"
                 android:textSize="18sp"
                 android:layout_marginTop="16dp"
                 android:gravity="center" />
 
-            <!-- Botón para seleccionar fecha de fin -->
+
             <Button
                 android:id="@+id/btn_fecha_fin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/seleccionar_fecha_de_fin"
                 android:layout_marginTop="8dp"
-                android:gravity="center" />
+                android:backgroundTint="@color/segundo_color"
+                android:gravity="center"
+                android:text="@string/seleccionar_fecha_de_fin"
+                android:textColor="@color/quinto_color" />
 
-            <!-- Días -->
             <TextView
                 android:id="@+id/txt_dias"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/TXT_DIAS"
-                android:textColor="@color/white"
+                android:textColor="@color/quinto_color"
                 android:textSize="18sp"
                 android:layout_marginTop="16dp"
                 android:gravity="center" />
 
-            <!-- Precio total -->
+
             <TextView
                 android:id="@+id/txt_precio_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/TXT_PRECIO_TOTAL"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/tercer_color"
                 android:textSize="18sp"
                 android:layout_marginTop="16dp"
                 android:gravity="center" />
 
-            <!-- Botón para confirmar -->
+
             <Button
                 android:id="@+id/btn_atras"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/atr_s"
                 android:layout_marginTop="20dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@color/quinto_color"
+                android:backgroundTint="@color/segundo_color"/>
 
-            <!-- Spinner para mostrar mientras se confirma -->
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"

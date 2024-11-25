@@ -7,6 +7,7 @@ public class Alquiler {
     private int diasSeleccionados;
 
     public Alquiler() {
+        // Constructor vacío para Firestore
     }
 
     public Alquiler(String fechaInicio, String fechaFin, String precioFinal, int diasSeleccionados) {
@@ -14,6 +15,9 @@ public class Alquiler {
         this.fechaFin = fechaFin;
         this.precioFinal = precioFinal;
         this.diasSeleccionados = diasSeleccionados;
+    }
+
+    public Alquiler(String fechaInicio, String fechaFin, String precioFinal, int diasSeleccionados, String uid) {
     }
 
     public String getFechaInicio() {

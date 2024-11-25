@@ -1,5 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">CarRental</string>
+    <string name="rent_vehicle">Alquilar Vehículo</string>
+    <string name="rent_bike">Alquilar Moto</string>
+    <string name="welcome_message">Tu solución confiable para alquilar vehículos de forma rápida y segura. Con nuestra aplicación, encontrarás el auto perfecto para cada ocasión, desde un viaje de negocios hasta unas vacaciones familiares. Explora nuestra amplia selección de autos, elige el que mejor se adapte a tus necesidades y comienza tu viaje sin complicaciones. ¡Rentar un auto nunca fue tan fácil!</string>
     <string name="TXT_FECHA_INICIO" />
     <string name="TXT_SELECCIONAR_FECHA" />
     <string name="TXT_FECHA_FIN" />

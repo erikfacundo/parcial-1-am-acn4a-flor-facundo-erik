@@ -3,33 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/primer_color">
 
     <TextView
         android:id="@+id/fecha_inicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha Inicio"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@color/quinto_color" />
 
     <TextView
         android:id="@+id/fecha_fin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha Fin"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@color/quinto_color" />
 
     <TextView
         android:id="@+id/precio_final"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Precio Final"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@color/quinto_color" />
 
     <TextView
         android:id="@+id/dias_seleccionados"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Días Seleccionados"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@color/quinto_color" />
 </LinearLayout>
