@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permiso de internet para Firebase y otros servicios en línea -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,18 +16,27 @@
         android:theme="@style/Theme.AndroidDavinci"
         tools:targetApi="31">
 
-        <!-- Agregar la actividad LoginActivity -->
+        <!-- Actividad de Confirmar Alquiler -->
+        <activity
+            android:name=".ConfirmarAlquilerActivity"
+            android:exported="false" />
+
+        <!-- Actividad de Login -->
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
 
+        <!-- Actividad de Detalles Vehículo -->
         <activity
             android:name=".DetallesVehiculoActivity"
             android:exported="false" />
+
+        <!-- Actividad de Vehículos Disponibles -->
         <activity
             android:name=".VehiculosDisponibles"
             android:exported="false" />
+
+        <!-- Actividad Principal (Main) -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -33,9 +45,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Actividad de Registro de Usuario -->
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
+
+        <!-- Servicio para Firebase Cloud Messaging (si se utiliza FCM) -->
+        <!-- Este bloque es opcional, solo si estás utilizando Firebase Cloud Messaging -->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
