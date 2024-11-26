@@ -1,9 +1,9 @@
+<resources>
+    <color name="primer_color">#FFFFFF</color>
+    <color name="segundo_color">#3A7CA5</color>
+    <color name="tercer_color">#A3D8F4</color>
+    <color name="cuarto_color">#7BB9D3</color>
+    <color name="quinto_color">#666</color>
+    <color name="white">#fff</color>
 
-    <resources>
-        <color name="primer_color">#4e4d49</color>
-        <color name="segundo_color">#725e45</color>
-        <color name="tercer_color">#b7946a</color>
-        <color name="cuarto_color">#e2c58d</color>
-        <color name="quinto_color">#d6cfbf</color>
-    </resources>
-
+</resources>

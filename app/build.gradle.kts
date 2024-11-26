@@ -42,9 +42,9 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    // Firebase dependencies
+    // Firebase dependencies (solo una línea para firestore con el BOM)
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-firestore") // Agregar Firestore
+    implementation("com.google.firebase:firebase-firestore") // Se usa el BOM, no es necesario especificar la versión manualmente
 }

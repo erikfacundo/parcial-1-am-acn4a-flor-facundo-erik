@@ -3,37 +3,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/primer_color">
 
-    <!-- Título de la actividad -->
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="16dp"
         android:text="Mis Alquileres"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingBottom="16dp"
-        android:gravity="center"/>
+        android:textColor="@color/primer_color"/>
 
-    <!-- Lista de alquileres -->
+
+    <TextView
+        android:id="@+id/userNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Nombre"
+        android:textSize="16sp"
+        android:textColor="@color/quinto_color"/>
+
+    <TextView
+        android:id="@+id/userLastNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Apellido"
+        android:textSize="16sp"
+        android:textColor="@color/quinto_color"/>
+
+    <TextView
+        android:id="@+id/userEmailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:text="Correo del usuario"
+        android:textSize="16sp"
+        android:textColor="@color/quinto_color"/>
+
+    <TextView
+        android:id="@+id/userDniTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="DNI"
+        android:textSize="16sp"
+        android:textColor="@color/quinto_color"/>
+
     <ListView
         android:id="@+id/alquileresListView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="457dp"
         android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp"
-        android:paddingBottom="8dp"/>
+        android:dividerHeight="1dp" />
 
-    <!-- Botón para cerrar sesión -->
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:paddingTop="20dp"
         android:text="Cerrar sesión"
-        android:textSize="16sp"
-        android:background="@color/cardview_dark_background"
-        android:textColor="#ffffff"
-        android:layout_marginTop="16dp"/>
+        android:textColor="@color/primer_color"
+    android:backgroundTint="@color/tercer_color"/>
 </LinearLayout>

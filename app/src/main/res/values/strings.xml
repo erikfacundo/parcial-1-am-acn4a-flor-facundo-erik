@@ -17,5 +17,6 @@
     <string name="login_button">Iniciar Sesión</string>
     <string name="register_button">Registrarse</string>
     <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="descargar_imagen">descargar_imagen\n</string>
 
 </resources>

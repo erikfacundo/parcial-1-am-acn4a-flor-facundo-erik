@@ -1,12 +1,8 @@
 package com.example.androiddavinci;
-import android.util.Log;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class AlquilerToken {
 
@@ -18,27 +14,25 @@ public class AlquilerToken {
 
     public void crearAlquiler(String fechaInicio, String fechaFin, String precioFinal, int diasSeleccionados, FirebaseUser user) {
         if (user == null) {
-            System.out.println("Usuario no autenticado.");
             return;
         }
 
-
-        Alquiler alquiler = new Alquiler(fechaInicio, fechaFin, precioFinal, diasSeleccionados, user.getUid());
-
+        String userId = user.getUid();
+        Alquiler alquiler = new Alquiler(fechaInicio, fechaFin, precioFinal, diasSeleccionados, userId);
 
         db.collection("alquileres")
                 .add(alquiler)
                 .addOnSuccessListener(documentReference -> {
-                    System.out.println("Alquiler creado con ID: " + documentReference.getId());
+                    String idAlquiler = documentReference.getId();
+                    alquiler.setIdAlquiler(idAlquiler);
+                    db.collection("alquileres").document(idAlquiler)
+                            .set(alquiler);
                 })
-                .addOnFailureListener(e -> {
-                    System.out.println("Error al crear el alquiler: " + e.getMessage());
-                });
+                .addOnFailureListener(e -> {});
     }
 
     public void obtenerAlquileres(FirebaseUser user) {
         if (user == null) {
-            System.out.println("Usuario no autenticado.");
             return;
         }
 
@@ -51,13 +45,8 @@ public class AlquilerToken {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Alquiler alquiler = document.toObject(Alquiler.class);
-                            System.out.println("Alquiler encontrado: " + alquiler.getFechaInicio());
                         }
-                    } else {
-                        Log.e("Firestore", "Error al obtener los alquileres", task.getException());
                     }
                 });
     }
-
 }
-

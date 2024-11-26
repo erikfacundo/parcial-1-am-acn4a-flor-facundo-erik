@@ -3,7 +3,6 @@ package com.example.androiddavinci;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -54,7 +53,7 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         txtDias = findViewById(R.id.txt_dias);
         Button btnSeleccionarFechaInicio = findViewById(R.id.btn_fecha_inicio);
         Button btnSeleccionarFechaFin = findViewById(R.id.btn_fecha_fin);
-        Button btnAtras = findViewById(R.id.btn_atras); // Inicializamos el botón "Continuar"
+        Button btnAtras = findViewById(R.id.btn_atras); // Botón para ir atrás
         progressBar = findViewById(R.id.progressBar); // Referencia al spinner (ProgressBar)
 
         imagen.setImageResource(imagenVehiculo);
@@ -177,7 +176,7 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
     }
 
     private void saveAlquilerToFirebase(String fechaInicio, String fechaFin, String precioFinal, int diasSeleccionados) {
-        String alquilerId = mDatabase.push().getKey(); // Generar un ID único para el alquiler
+        String alquilerId = mDatabase.push().getKey();
 
         Alquiler alquiler = new Alquiler(fechaInicio, fechaFin, precioFinal, diasSeleccionados);
 
