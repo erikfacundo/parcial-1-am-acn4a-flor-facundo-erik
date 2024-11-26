@@ -25,14 +25,14 @@
         android:id="@+id/descriptionText"
         android:layout_width="426dp"
         android:layout_height="127dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="188dp"
         android:fontFamily="@font/monts"
         android:gravity="center"
         android:text="Alquila vehículos de forma rápida y segura. Encuentra el auto perfecto para cada ocasión y comienza tu viaje sin complicaciones. ¡Rentar un auto nunca fue tan fácil!"
         android:textColor="@color/quinto_color"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo" />
 

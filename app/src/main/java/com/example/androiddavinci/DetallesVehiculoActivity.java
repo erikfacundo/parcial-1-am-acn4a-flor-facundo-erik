@@ -14,22 +14,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
 public class DetallesVehiculoActivity extends AppCompatActivity {
 
-    // Variables de vista
     private TextView txtFechaInicio, txtFechaFin, txtPrecio, txtDias;
     private String fechaInicio = "", fechaFin = "";
     private double precioBase;
     private static final String TXT_DIAS = "Días: ";
-    private ProgressBar progressBar; // Spinner
+    private ProgressBar progressBar;
 
-    // Firebase
-    private DatabaseReference mDatabase;
+    private FirebaseFirestore db;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,15 +34,12 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles_vehiculo);
 
-        // Inicializar Firebase
-        mDatabase = FirebaseDatabase.getInstance().getReference("alquileres");
+        db = FirebaseFirestore.getInstance();
 
-        // Recuperar los datos enviados
         Intent intent = getIntent();
         String precioVehiculo = intent.getStringExtra("precio");
         int imagenVehiculo = intent.getIntExtra("imagen", 0);
 
-        // Elementos que debe mostrar
         ImageView imagen = findViewById(R.id.imagen_vehiculo);
         txtPrecio = findViewById(R.id.precio_vehiculo);
         txtFechaInicio = findViewById(R.id.txt_fecha_inicio);
@@ -53,8 +47,8 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         txtDias = findViewById(R.id.txt_dias);
         Button btnSeleccionarFechaInicio = findViewById(R.id.btn_fecha_inicio);
         Button btnSeleccionarFechaFin = findViewById(R.id.btn_fecha_fin);
-        Button btnAtras = findViewById(R.id.btn_atras); // Botón para ir atrás
-        progressBar = findViewById(R.id.progressBar); // Referencia al spinner (ProgressBar)
+        Button btnAtras = findViewById(R.id.btn_atras);
+        progressBar = findViewById(R.id.progressBar);
 
         imagen.setImageResource(imagenVehiculo);
         txtPrecio.setText(precioVehiculo);
@@ -69,7 +63,7 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         btnAtras.setOnClickListener(view -> {
             if (fechaInicio.isEmpty() || fechaFin.isEmpty()) {
                 showAlert("Error", "Por favor, seleccione ambas fechas", "OK", false);
-                return; // No continuar si alguna fecha está vacía
+                return;
             }
 
             if (fechaInicio.compareTo(fechaFin) >= 0) {
@@ -79,7 +73,6 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
 
             progressBar.setVisibility(View.VISIBLE);
 
-            // Calcular el precio total basado en los días seleccionados
             int diasSeleccionados = calculateDaysDifference(fechaInicio, fechaFin);
 
             if (diasSeleccionados > 0) {
@@ -87,7 +80,7 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
                 @SuppressLint("DefaultLocale") String precioFinal = "$" + String.format("%.2f", precioTotal);
                 txtPrecio.setText(precioFinal);
 
-                saveAlquilerToFirebase(fechaInicio, fechaFin, precioFinal, diasSeleccionados);
+                saveAlquilerToFirestore(fechaInicio, fechaFin, precioFinal, diasSeleccionados);
 
                 showAlert("Confirmación", "El alquiler ha sido confirmado con éxito. Precio total: " + precioFinal, "OK", true);
             } else {
@@ -175,14 +168,17 @@ public class DetallesVehiculoActivity extends AppCompatActivity {
         }
     }
 
-    private void saveAlquilerToFirebase(String fechaInicio, String fechaFin, String precioFinal, int diasSeleccionados) {
-        String alquilerId = mDatabase.push().getKey();
-
+    private void saveAlquilerToFirestore(String fechaInicio, String fechaFin, String precioFinal, int diasSeleccionados) {
         Alquiler alquiler = new Alquiler(fechaInicio, fechaFin, precioFinal, diasSeleccionados);
 
-        if (alquilerId != null) {
-            mDatabase.child(alquilerId).setValue(alquiler);
-        }
+        db.collection("alquileres")
+                .add(alquiler)
+                .addOnSuccessListener(documentReference -> {
+                    alquiler.setIdAlquiler(documentReference.getId());
+                    db.collection("alquileres").document(documentReference.getId())
+                            .set(alquiler);
+                })
+                .addOnFailureListener(e -> {});
     }
 
     private void showAlert(String title, String message, String positiveButtonText, boolean isSuccess) {
