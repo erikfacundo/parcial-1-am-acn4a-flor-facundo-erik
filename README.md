@@ -59,12 +59,12 @@ Al finalizar el proceso, el usuario recibe una confirmación con los detalles de
     - `precioFinal`: El precio total calculado.
     - `diasSeleccionados`: Número de días del alquiler.
     - `userId`: ID del usuario que realiza el alquiler.
-[![image.png](https://i.postimg.cc/cCq1yjM2/image.png)](https://postimg.cc/cgmGfFzB)
-[![image.png](https://i.postimg.cc/k4RMH98W/image.png)](https://postimg.cc/njZtsy3L)
-[![image.png](https://i.postimg.cc/bNhYm7v2/image.png)](https://postimg.cc/SjgpstCy)
-[![image.png](https://i.postimg.cc/LXPRTDKT/image.png)](https://postimg.cc/Q9jRNpM9)
+
 ### 📊 Estructura de Firebase
 Firebase Authentication (opcional): Autenticar a los usuarios para luego asociar los alquileres a un usuario específico.
 [![image.png](https://i.postimg.cc/nLzhvqhR/image.png)](https://postimg.cc/sMkzzQS7)
 [![Imagen-de-Whats-App-2024-11-26-a-las-21-33-40-45bb8a1f.jpg](https://i.postimg.cc/P5dx5gsk/Imagen-de-Whats-App-2024-11-26-a-las-21-33-40-45bb8a1f.jpg)](https://postimg.cc/sv0yn0gn)
-
+[![image.png](https://i.postimg.cc/cCq1yjM2/image.png)](https://postimg.cc/cgmGfFzB)
+[![image.png](https://i.postimg.cc/k4RMH98W/image.png)](https://postimg.cc/njZtsy3L)
+[![image.png](https://i.postimg.cc/bNhYm7v2/image.png)](https://postimg.cc/SjgpstCy)
+[![image.png](https://i.postimg.cc/LXPRTDKT/image.png)](https://postimg.cc/Q9jRNpM9)
