@@ -59,6 +59,13 @@ Al finalizar el proceso, el usuario recibe una confirmación con los detalles de
     - `precioFinal`: El precio total calculado.
     - `diasSeleccionados`: Número de días del alquiler.
     - `userId`: ID del usuario que realiza el alquiler.
+- **Colección: Usuarios**
+  - Cada documento representa un alquiler con los siguientes campos:
+    - `dni`: DNI .
+    - `email`: Email.
+    - `lastName`: Apellido.
+    - `name`: Nombre.
+    - `userId`: ID del usuario que realiza el alquiler.
 
 ### 📊 Estructura de Firebase
 Firebase Authentication (opcional): Autenticar a los usuarios para luego asociar los alquileres a un usuario específico.
